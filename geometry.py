@@ -43,6 +43,18 @@ def arrange(l):
     return sorted(l, key=lambda p: make_angle(*p))
 
 
+def transform(shape, fn):
+    return [[fn(x, y, z) for x, y, z in tri] for tri in shape]
+
+
+def wall_pieces(base1, base2, heights):
+    x1, y1 = base1
+    x2, y2 = base2
+
+    for z1, z2 in zip(heights[:-1], heights[1:]):
+        yield from triangulate([(x1, y1, z1), (x1, y1, z2), (x2, y2, z2), (x2, y2, z1)])
+
+
 SIN_60 = sqrt(3) / 2
 SQRT_3_OVER_2 = sqrt(3) / sqrt(2)
 PI = atan2(0, -1)

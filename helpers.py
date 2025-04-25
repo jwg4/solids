@@ -7,3 +7,8 @@ def make_mesh(data):
         for j in range(3):
             co_mesh.vectors[i][j] = v[j]
     return co_mesh
+
+
+def write_mesh(shape, scale, filename):
+    data = np.array(shape)
+    make_mesh(data * scale).save(filename)
